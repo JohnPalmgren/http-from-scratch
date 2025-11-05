@@ -5,7 +5,7 @@ def http_server(host='localhost', port=8000):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-    server_socket.bind(host, port)
+    server_socket.bind((host, port))
     server_socket.listen(5)
 
     print(f'Server running on http://{host}:{port}')
@@ -19,14 +19,27 @@ def handle_request(client_socket):
     else:
         print('Request empty')
 
-        response = """HTTP/1.1 200 OK
-            Content-Type: text/html
+    response = """HTTP/1.1 200 OK
+        Content-Type: text/html
 
-            <html>
-            <body>
-            <h1>Hello world</h1>
-            </body>
-            </html>
-        """
+        <html>
+        <body>
+        <h1>Hello world</h1>
+        </body>
+        </html>
+    """
     client_socket.send(response.encode('utf-8'))
     client_socket.close()
+
+def run_server():
+    server = http_server()
+    try:
+        while True:
+            client_socket, address = server.accept()
+            print(f'New connection from {address}')
+            handle_request(client_socket)
+    except KeyboardInterrupt:
+        server.close()
+
+if __name__ == "__main__":
+    run_server()
