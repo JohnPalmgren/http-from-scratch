@@ -1,5 +1,6 @@
 import socket
 import threading
+from lib.request import Request
 
 class HTTPServer():
     def __init__(self, host='localhost', port=8000):
@@ -16,25 +17,6 @@ class HTTPServer():
         print(f'Server running on http://{self._host}:self.{self._port}')
 
         return server_socket
-    
-    def __handle_request(self, client_socket):
-        request = client_socket.recv(1024).decode('utf-8')
-        if request:
-            print(f'Received request {request.split()[1]}')
-        else:
-            print('Request empty')
-
-        response = """HTTP/1.1 200 OK
-            Content-Type: text/html
-
-            <html>
-            <body>
-            <h1>Hello world</h1>
-            </body>
-            </html>
-        """
-        client_socket.send(response.encode('utf-8'))
-        client_socket.close()
 
     def run_server(self):
         server = self.__create_server()
@@ -42,9 +24,9 @@ class HTTPServer():
             while True:
                 client_socket, address = server.accept()
                 print(f'New connection from {address}')
-                # self.__handle_request(client_socket)
+                req = Request()
                 thread = threading.Thread(
-                    target=self.__handle_request, 
+                    target=req.handle_request, 
                     args=(client_socket,)
                 )
                 thread.start()
