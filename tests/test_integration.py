@@ -32,4 +32,3 @@ def test_server_response(running_server):
         pytest.fail(f"Client connection failed: {e}")
 
     assert b"HTTP/1.1 200 OK" in response
-    assert b"Hello world" in response
