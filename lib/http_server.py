@@ -23,7 +23,7 @@ class HTTPServer():
         try:
             while True:
                 client_socket, address = server.accept()
-                print(f'New connection from {address}')
+                # print(f'New connection from {address}')
                 req = Request()
                 thread = threading.Thread(
                     target=req.handle_request, 
