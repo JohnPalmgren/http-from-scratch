@@ -12,9 +12,3 @@ class PokemonRepository():
         command = 'SELECT * FROM pokemons'
         rows = self.connection.execute(command)
         return [Pokemon(row["name"], row["type"]) for row in rows]
-
-    # def get_json(self):
-    #     object_list = []
-    #     for pokemon in self.store:
-    #         object_list.append({"name": pokemon.name, "class_type": pokemon.class_type})
-    #     return json.dumps(object_list)

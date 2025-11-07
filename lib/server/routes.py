@@ -1,6 +1,7 @@
 from lib.pokemon_repository import PokemonRepository
 from lib.pokemon import Pokemon
 from lib.database_connection import DatabaseConnection
+import json
 
 class Routes:
     def __init__(self, req):
@@ -20,7 +21,7 @@ class Routes:
                 file_name = "templates/pokemon/new.html"
             case "/pokemon/data":
                 header = "HTTP/1.1 200 OK\r\nContent-Type: json\r\n\r\n"
-                return header + self.repo.get_json()
+                return header + self._pokemon_to_json(self.repo.all())
             case _:
                 return self._page_not_found()
 
@@ -41,7 +42,6 @@ class Routes:
         if redirect:
             self._path = redirect
         return self.get()
-
 
 
     def _page_not_found(self):
@@ -79,3 +79,6 @@ class Routes:
             value = key_val.split("=")[1]
             formatted_data[key] = value
         return formatted_data
+
+    def _pokemon_to_json(self, pokemons):
+        return json.dumps([{"name": pokemon.name, "class_type": pokemon.class_type} for pokemon in pokemons])
