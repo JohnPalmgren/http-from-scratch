@@ -4,6 +4,13 @@ import pytest
 import socket
 import time
 from lib.server.http_server import HTTPServer 
+from lib.database_connection import DatabaseConnection
+
+@pytest.fixture
+def db_connection():
+    conn = DatabaseConnection(test_mode=True)
+    conn.connect()
+    return conn
 
 @pytest.fixture
 def running_server():

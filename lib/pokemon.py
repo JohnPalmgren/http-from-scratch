@@ -5,3 +5,6 @@ class Pokemon():
     
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
+    
+    def __repr__(self):
+        return f"Pokemon({self.name}, {self.class_type})"

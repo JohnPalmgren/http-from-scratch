@@ -1,14 +1,20 @@
-import json
+from lib.pokemon import Pokemon
 
 class PokemonRepository():
-    def __init__(self):
-        self.store = []
+    def __init__(self, connection):
+        self.connection = connection
 
     def add(self, pokemon):
-        self.store.append(pokemon)
+        command = 'INSERT INTO pokemons (name, type) VALUES (%s, %s)'
+        self.connection.execute(command, [pokemon.name, pokemon.class_type])
+    
+    def all(self):
+        command = 'SELECT * FROM pokemons'
+        rows = self.connection.execute(command)
+        return [Pokemon(row["name"], row["type"]) for row in rows]
 
-    def get_json(self):
-        object_list = []
-        for pokemon in self.store:
-            object_list.append({"name": pokemon.name, "class_type": pokemon.class_type})
-        return json.dumps(object_list)
+    # def get_json(self):
+    #     object_list = []
+    #     for pokemon in self.store:
+    #         object_list.append({"name": pokemon.name, "class_type": pokemon.class_type})
+    #     return json.dumps(object_list)

@@ -1,11 +1,14 @@
 from lib.pokemon_repository import PokemonRepository
 from lib.pokemon import Pokemon
+from lib.database_connection import DatabaseConnection
 
 class Routes:
     def __init__(self, req):
         self._req = req
         self._path = req.split()[1]
-        self.repo = PokemonRepository()
+        conn = DatabaseConnection()
+        conn.connect()
+        self.repo = PokemonRepository(conn)
 
     def get(self):
         match self._path:
