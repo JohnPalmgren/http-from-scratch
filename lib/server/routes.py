@@ -19,7 +19,7 @@ class Routes:
                 file_name = "templates/pokemon/index.html"
             case "/pokemon/add":
                 file_name = "templates/pokemon/new.html"
-            case "/pokemon/data":
+            case "/api/pokemon":
                 header = "HTTP/1.1 200 OK\r\nContent-Type: json\r\n\r\n"
                 return header + self._pokemon_to_json(self.repo.all())
             case _:

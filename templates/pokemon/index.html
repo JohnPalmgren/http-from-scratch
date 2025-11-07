@@ -5,14 +5,25 @@
   <title>Pokemon</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
+  <script>
+    async function fetchUserData() {
+        
+        const response = await fetch('/api/pokemon');
+        const pokemon = await response.json();
+
+        listEl = document.getElementById('pokemon-list')
+        pokemon.forEach((p) =>{
+          const listItem = document.createElement('li')
+          listItem.textContent = p.name
+          listEl.appendChild(listItem)
+        })
+    }
+    fetchUserData();
+</script>
 </head>
 <body>
   <h1>Top Pokemon</h1>
-  <ul>
-    <li>Charizard</li>
-    <li>Lucario</li>
-    <li>Umbreon</li>
-    <li>Pikachu</li>
+  <ul id="pokemon-list">
   </ul>
 </body>
 </html>
