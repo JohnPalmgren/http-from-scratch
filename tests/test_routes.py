@@ -1,4 +1,4 @@
-from lib.routes import Routes
+from lib.server.routes import Routes
 
 def test_route_initialised_with_request():
     request = "GET / HTTP/1.1"

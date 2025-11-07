@@ -1,4 +1,4 @@
-from lib.http_server import HTTPServer
+from lib.server.http_server import HTTPServer
 
 def test_server_initiates_with_host_and_port():
     server = HTTPServer('localhost', 8080)

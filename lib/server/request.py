@@ -1,4 +1,4 @@
-from lib.routes import Routes
+from lib.server.routes import Routes
 
 class Request():
 

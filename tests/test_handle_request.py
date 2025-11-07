@@ -1,4 +1,4 @@
-from lib.request import Request
+from lib.server.request import Request
 
 def test_get_with_valid_input(mocker):
     mock_soc = mocker.Mock()

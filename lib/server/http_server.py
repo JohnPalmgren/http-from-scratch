@@ -1,6 +1,6 @@
 import socket
 import threading
-from lib.request import Request
+from lib.server.request import Request
 
 class HTTPServer():
     def __init__(self, host='localhost', port=8000):

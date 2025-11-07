@@ -1,4 +1,4 @@
-from lib.http_server import HTTPServer
+from lib.server.http_server import HTTPServer
 
 server = HTTPServer()
 

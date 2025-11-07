@@ -3,7 +3,7 @@ import time
 import pytest 
 import socket
 import time
-from lib.http_server import HTTPServer 
+from lib.server.http_server import HTTPServer 
 
 @pytest.fixture
 def running_server():
