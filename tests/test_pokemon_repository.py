@@ -20,4 +20,4 @@ def test_pokemon_json():
     repo.add(bbs)
     repo.add(ev)
     json = repo.get_json()
-    assert json == ['{"name": "Bulbasaur", "class_type": "grass"}', '{"name": "eevee", "class_type": "normal"}']
+    assert json == '[{"name": "Bulbasaur", "class_type": "grass"}, {"name": "eevee", "class_type": "normal"}]'
