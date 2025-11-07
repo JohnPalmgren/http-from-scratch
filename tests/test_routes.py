@@ -3,7 +3,7 @@ from lib.routes import Routes
 def test_route_initialised_with_request():
     request = "GET / HTTP/1.1"
     routes = Routes(request)
-    assert routes.req == request
+    assert routes._req == request
 
 def test_valid_get_for_root():
     request = "GET / HTTP/1.1"
