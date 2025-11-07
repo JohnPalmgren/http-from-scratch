@@ -14,7 +14,7 @@ class HTTPServer():
         server_socket.bind((self._host, self._port))
         server_socket.listen(5)
 
-        print(f'Server running on http://{self._host}:self.{self._port}')
+        print(f'Server running on http://{self._host}:{self._port}')
 
         return server_socket
 
@@ -23,7 +23,6 @@ class HTTPServer():
         try:
             while True:
                 client_socket, address = server.accept()
-                # print(f'New connection from {address}')
                 req = Request()
                 thread = threading.Thread(
                     target=req.handle_request, 
